@@ -40,9 +40,12 @@ public class EmployeeService {
 		return employeeRepository.getByLastName(lastName);
 	}
 	public void save(Employee employee){
-		
 		//设置创建时间
 		employee.setCreateTime(new Date());
 		employeeRepository.saveAndFlush(employee);
+	}
+	@Transactional(readOnly=true)
+	public Employee get(Integer id){
+		return  employeeRepository.findOne(id);
 	}
 }

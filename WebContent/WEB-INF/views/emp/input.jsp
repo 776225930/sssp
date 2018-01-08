@@ -1,6 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,7 +15,15 @@
         		var val=$(this).val();
         	    val=$.trim(val);
         	    $(this).val(val);
-        	   var url="${pageContext.request.contextPath}/ajaxValidateLastName";
+        	    //若修改的LastName和之前的lastName一致,则不发送Ajax请求,直接alert可用
+        	     var _oldLastName=$("#_oldLastName").val();
+        	     _oldLastName=$.trim(_oldLastName);
+        	     if(_oldLastName!=null&&_oldLastName!=""&&_oldLastName==val){
+        	    	 alert("lastName  可用");
+        	    	 return;
+        	     }
+        	    
+        	    var url="${pageContext.request.contextPath}/ajaxValidateLastName";
         	   var args={"lastName":val,"date":new Date()};
         	   
         	   $.post(url,args,function(data){
@@ -31,6 +40,9 @@
 </script>
 </head>
 <body>
+     <c:if test="${ employee.id !=null}">
+         <input type="hidden" id="_oldLastName" value="${ employee.lastName}">
+     </c:if>
     <form:form action="${pageContext.request.contextPath}/emp" method="POST" modelAttribute="employee">
        LastName:<form:input path="lastName" id="lastName"/>
        <br>

@@ -23,6 +23,7 @@ public class EmployeeHandler {
     private EmployeeService employeeService;
     @Autowired
     private DepartmentService departmentService;
+    
     @RequestMapping(value="/emps")
     public String list(@RequestParam(value="pageNo",required=false,defaultValue="1")String pageNoStr,Map<String,Object> map){
     	int pageNo=1;
@@ -41,6 +42,7 @@ public class EmployeeHandler {
     public String input(Map<String,Object> map){
     	map.put("departments", departmentService.getAll());
     	map.put("employee",new Employee());
+    	map.put("departments",departmentService.getAll());
     	return "emp/input";
     }
     @ResponseBody
@@ -57,5 +59,11 @@ public class EmployeeHandler {
     public String save(Employee employee){
     	employeeService.save(employee);
     	return "redirect:/emps";
+    }
+    @RequestMapping(value="/emp/{id}",method=RequestMethod.GET)
+    public String input(@PathVariable("id")Integer id ,Map<String,Object> map){
+    	Employee employee=employeeService.get(id);
+    	map.put("employee", employee);
+    	return "emp/input";
     }
 }
