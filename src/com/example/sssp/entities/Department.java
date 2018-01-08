@@ -1,12 +1,12 @@
 package com.example.sssp.entities;
 
-import java.util.Date;
-
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+@Cacheable(value=true)
 @Table(name="SSSP_DEPTS")
 @Entity
 public class Department {
