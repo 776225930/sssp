@@ -16,7 +16,7 @@ public class SSSPTest {
     	 ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
      }
 	@Test
-	public void test() throws SQLException {
+	public void testDataSource() throws SQLException {
 		DataSource dataSource=ctx.getBean(DataSource.class);
 		System.out.println(dataSource.getConnection());
 	}
