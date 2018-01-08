@@ -80,5 +80,9 @@ public class EmployeeHandler {
         	  map.put("employee", employee);
           } 
     }
-    
+    @RequestMapping(value="/emp/{id}",method=RequestMethod.DELETE)
+    public String delete(@PathVariable("id")Integer id){
+    	employeeService.delete(id);
+    	return "redirect:/emps";
+    }
 }

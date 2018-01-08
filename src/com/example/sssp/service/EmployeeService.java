@@ -50,4 +50,8 @@ public class EmployeeService {
 	public Employee get(Integer id){
 		return  employeeRepository.findOne(id);
 	}
+	@Transactional
+	public void delete(Integer id){
+		employeeRepository.delete(id);
+	}
 }
