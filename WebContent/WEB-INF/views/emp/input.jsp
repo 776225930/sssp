@@ -40,10 +40,17 @@
 </script>
 </head>
 <body>
-     <c:if test="${ employee.id !=null}">
-         <input type="hidden" id="_oldLastName" value="${ employee.lastName}">
-     </c:if>
+      <c:set value="${pageContext.request.contextPath}/emp" var="url"></c:set>
+      <c:if test="${employee.id!=null }">
+         <c:set value="${pageContext.request.contextPath}/emp/${employee.id }" var="url"></c:set>
+      </c:if>
+
     <form:form action="${pageContext.request.contextPath}/emp" method="POST" modelAttribute="employee">
+       <c:if test="${ employee.id !=null}">
+         <input type="hidden" id="_oldLastName" value="${ employee.lastName}">
+         <form:hidden path="id"/>
+         <input type="hidden" value="_method" value="PUT"> 
+     </c:if>
        LastName:<form:input path="lastName" id="lastName"/>
        <br>
        Email:<form:input path="email"/>

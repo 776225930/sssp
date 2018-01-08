@@ -41,7 +41,9 @@ public class EmployeeService {
 	}
 	public void save(Employee employee){
 		//设置创建时间
+		if(employee.getId()==null){
 		employee.setCreateTime(new Date());
+		};
 		employeeRepository.saveAndFlush(employee);
 	}
 	@Transactional(readOnly=true)

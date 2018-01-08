@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,4 +67,17 @@ public class EmployeeHandler {
     	map.put("employee", employee);
     	return "emp/input";
     }
+    @RequestMapping(value="emp/{id}",method=RequestMethod.PUT)
+    public String update(Employee employee){
+    	employeeService.save(employee);
+    	return "redirect:/emps";
+    }
+    @ModelAttribute
+    public void getEmployee(@RequestParam(value="id",required=false)Integer id,Map<String,Object> map){
+          if(id!=null){
+        	  Employee employee=employeeService.get(id);
+        	  map.put("employee", employee);
+          } 
+    }
+    
 }
