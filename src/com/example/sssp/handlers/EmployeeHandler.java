@@ -43,7 +43,6 @@ public class EmployeeHandler {
     public String input(Map<String,Object> map){
     	map.put("departments", departmentService.getAll());
     	map.put("employee",new Employee());
-    	map.put("departments",departmentService.getAll());
     	return "emp/input";
     }
     @ResponseBody
@@ -65,6 +64,7 @@ public class EmployeeHandler {
     public String input(@PathVariable("id")Integer id ,Map<String,Object> map){
     	Employee employee=employeeService.get(id);
     	map.put("employee", employee);
+    	map.put("departments",departmentService.getAll());
     	return "emp/input";
     }
     @RequestMapping(value="emp/{id}",method=RequestMethod.PUT)
@@ -76,6 +76,7 @@ public class EmployeeHandler {
     public void getEmployee(@RequestParam(value="id",required=false)Integer id,Map<String,Object> map){
           if(id!=null){
         	  Employee employee=employeeService.get(id);
+        	  employee.setDepartment(null);
         	  map.put("employee", employee);
           } 
     }
