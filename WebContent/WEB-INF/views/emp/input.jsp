@@ -38,8 +38,6 @@
        <br>
        Birth:<form:input path="birth"/>
        <br>
-       CreateTime:<form:input path="createTime"/>
-       <br>
        Department:<form:select path="department.id" itemLabel="departmentName" items="${departments}" itemValue="id" ></form:select>
        <br>
        <br>

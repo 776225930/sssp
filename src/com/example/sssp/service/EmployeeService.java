@@ -1,5 +1,7 @@
 package com.example.sssp.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,5 +38,11 @@ public class EmployeeService {
 	public Employee getByLastName(String lastName){
 		
 		return employeeRepository.getByLastName(lastName);
+	}
+	public void save(Employee employee){
+		
+		//设置创建时间
+		employee.setCreateTime(new Date());
+		employeeRepository.saveAndFlush(employee);
 	}
 }

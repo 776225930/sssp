@@ -53,4 +53,9 @@ public class EmployeeHandler {
     		return "1";
     	}
     }
+    @RequestMapping(value="emp",method=RequestMethod.POST)
+    public String save(Employee employee){
+    	employeeService.save(employee);
+    	return "redirect:/emps";
+    }
 }
