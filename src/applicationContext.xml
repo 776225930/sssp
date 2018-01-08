@@ -58,7 +58,7 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 	     <property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	     <!-- 配置基于注解的事务 -->
-	     <tx:annotation-driven  transaction-manager="transactionManager"/>
-	     
 	</bean>
+	<tx:annotation-driven  transaction-manager="transactionManager"/>
+	     
 </beans>
