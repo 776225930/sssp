@@ -6,9 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sssp.entities.Department;
 import com.example.sssp.entities.Employee;
@@ -40,5 +42,15 @@ public class EmployeeHandler {
     	map.put("departments", departmentService.getAll());
     	map.put("employee",new Employee());
     	return "emp/input";
+    }
+    @ResponseBody
+    @RequestMapping(value="/ajaxValidateLastName",method=RequestMethod.POST)
+    public String validatelastName(@RequestParam(value="lastName",required=true)String lastName){
+    	Employee employee=employeeService.getByLastName(lastName);
+    	if(employee==null){
+    		return "0";
+    	}else{
+    		return "1";
+    	}
     }
 }

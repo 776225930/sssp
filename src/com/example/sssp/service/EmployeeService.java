@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.sssp.entities.Employee;
 import com.example.sssp.repository.EmployeeRepository;
@@ -30,5 +31,10 @@ public class EmployeeService {
 		System.out.println("当前页面的List:  "+page.getContent());
 		System.out.println("当前页面记录数: "+page.getNumberOfElements());
 		return page;
+	}
+	@Transactional(readOnly=true)
+	public Employee getByLastName(String lastName){
+		
+		return employeeRepository.getByLastName(lastName);
 	}
 }
