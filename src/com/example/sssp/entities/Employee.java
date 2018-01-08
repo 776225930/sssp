@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,7 +65,7 @@ public class Employee {
 		this.createTime = createTime;
 	}
 	@JoinColumn(name="DEPT_ID")
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
 	public Department getDepartment() {
 		return department;
 	}
@@ -76,7 +77,8 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", lastName=" + lastName + ", email=" + email + ", birth=" + birth
-				+ ", createTime=" + createTime + "]";
+				+ ", createTime=" + createTime + ", department=" + department + "]";
 	}
+
 
 }

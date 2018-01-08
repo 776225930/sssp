@@ -13,7 +13,7 @@ public class Department {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
 	private Integer id;
-	private String deparmentName;
+	private String departmentName;
 
 	public Integer getId() {
 		return id;
@@ -23,17 +23,17 @@ public class Department {
 		this.id = id;
 	}
 
-	public String getDeparmentName() {
-		return deparmentName;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public void setDeparmentName(String deparmentName) {
-		this.deparmentName = deparmentName;
+	public void setDepartmentName(String deparmentName) {
+		this.departmentName = deparmentName;
 	}
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", deparmentName=" + deparmentName + "]";
+		return "Department [id=" + id + ", departmentName=" + departmentName + "]";
 	}
 
 }
